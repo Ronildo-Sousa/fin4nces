@@ -11,7 +11,6 @@ return new class extends Migration
      *
      * @return void
      */
-    //another change
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
