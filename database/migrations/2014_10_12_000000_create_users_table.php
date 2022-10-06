@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password')->nullable(bcrypt("password"));
-            $table->string("auth_provider");
-            $table->string("auth_id");
-            $table->string("auth_secret");
+            $table->string('password');
+            $table->string("auth_provider")->nullable();
+            $table->string("auth_id")->nullable();
+            $table->string("auth_secret")->nullable();
             $table->timestamps();
         });
     }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Auth\Register;
+use App\Actions\Auth\AuthSocial;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
@@ -17,9 +19,11 @@ class AuthController extends Controller
         return Socialite::driver($provider)->redirect();
     }
 
-    public function handleCallback(string $provider)
+    public function authRgister(string $provider)
     {
-        (new Register)->run($provider);
+        $playload = (new AuthSocial)->run($provider);
+
+        return response()->json([$playload], Response::HTTP_CREATED);
     }
 
     private function validateProvider(string $provider): bool
