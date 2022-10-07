@@ -25,14 +25,4 @@ class AuthController extends Controller
 
         return response()->json([$playload], Response::HTTP_CREATED);
     }
-
-    private function validateProvider(string $provider): bool
-    {
-        $provider = strtolower($provider);
-        $providers = [
-            'github',
-        ];
-
-        return in_array($provider, $providers);
-    }
 }
