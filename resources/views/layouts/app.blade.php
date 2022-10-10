@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     @livewireStyles
 </head>
-<body>
+<body class="bg-gray-800">
     {{ $slot }}
     @livewireScripts
 </body>
