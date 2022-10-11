@@ -3,20 +3,16 @@
         <div>
             <img class="w-auto h-12 mx-auto" src="https://tailwindui.com/img/logos/mark.svg?color=green&shade=600"
                 alt="Your Company">
-            <h2 class="mt-6 text-3xl font-bold tracking-tight text-center text-white">Create your account</h2>
+            <h2 class="mt-6 text-3xl font-bold tracking-tight text-center text-white">Sign in to your account</h2>
         </div>
-        <form wire:submit.prevent='save' class="mt-8 space-y-6" action="#" method="POST">
+        <form wire:submit.prevent='login' class="mt-8 space-y-6" action="#" method="POST">
+            @if (session()->has('error'))
+                <div class="flex justify-center">
+                    <span class="text-red-400 text-center">{{ session('error') }}</span>
+                </div>
+            @endif
             <input type="hidden" name="remember" value="true">
             <div class="flex flex-col justify-between">
-                <div>
-                    <label for="name" class="sr-only">Name</label>
-                    <input wire:model='name' id="name" name="name" type="text"
-                        class="relative block w-full px-3 py-2 text-black placeholder-gray-500 border border-gray-300 rounded-none rounded-sm appearance-none focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        placeholder="Name">
-                    @error('name')
-                        <span class="text-red-400">{{ $message }}</span>
-                    @enderror
-                </div>
                 <div class="mt-5">
                     <label for="email-address" class="sr-only">Email address</label>
                     <input wire:model='email' id="email-address" name="email" type="email" autocomplete="email"
@@ -51,10 +47,10 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </span>
-                    Sign up
+                    Sign in
                 </button>
                 <div class="mt-2 flex justify-end p-1">
-                    <a href="{{ route("login"); }}" class="text-white hover:text-blue-400">Sign in to your account</a>
+                    <a href="{{ route('register') }}" class="text-white hover:text-blue-400">Create an account</a>
                 </div>
             </div>
         </form>
