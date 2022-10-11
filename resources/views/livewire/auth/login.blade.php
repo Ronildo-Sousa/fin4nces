@@ -67,6 +67,6 @@
                     <i class="devicon-google-plain"></i>
                 </x-auth.social-button>
             </div>
-        </div>/
+        </div>
     </div>
 </section>
