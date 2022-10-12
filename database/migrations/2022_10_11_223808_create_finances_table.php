@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('type',['expense','incoming']);
             $table->string('description');
             $table->date('date');
-            $table->decimal('aumount');
+            $table->decimal('amount');
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
