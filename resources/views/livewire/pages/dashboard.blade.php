@@ -1,6 +1,15 @@
-<div>
-    <button wire:click="$emit('openModal', 'finances.create')">Edit User</button>
+<main class="overflow-hidden">
+    <div class="bg-red-50">
+        <livewire:pages.side-bar />
+    </div>
+
+    <button wire:click="$emit('openModal', 'finances.create')" class="fixed bottom-5 right-3 bg-green-600 text-white hover:bg-green-700 p-1 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-8 h-8 font-bold">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+    </button>
     @foreach ($finances as $finance)
         <p class="text-white">{{ $finance }}</p>
     @endforeach
-</div>
+</main>
