@@ -23,4 +23,9 @@ class Finance extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function financeType(): BelongsTo
+    {
+        return $this->belongsTo(FinanceType::class);
+    }
 }

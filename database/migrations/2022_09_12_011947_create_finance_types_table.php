@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('finances', function (Blueprint $table) {
+        Schema::create('finance_types', function (Blueprint $table) {
             $table->id();
-            $table->string('description');
-            $table->date('date');
-            $table->decimal('amount');
-            $table->unsignedBigInteger('finance_type');
-            $table->foreign('finance_type')->references('id')->on('finance_types');
-            $table->foreignId('user_id')->constrained();
+            $table->enum('type',['expense','incoming']);
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('finances');
+        Schema::dropIfExists('finance_types');
     }
 };

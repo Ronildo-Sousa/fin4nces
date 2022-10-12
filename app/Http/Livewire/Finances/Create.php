@@ -2,22 +2,24 @@
 
 namespace App\Http\Livewire\Finances;
 
-use App\Models\Finance;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Create extends Component
 {
-    public string $type = '';
-    public string $date;
+    public ?int $finance_type = null;
+    public string $date = '';
     public string $description = '';
-    public float $amount = 0;
+    public ?float $amount = null;
 
-    public function mount()
-    {
-        $this->date = new Carbon();
-    }
+    protected $rules = [
+        'finance_type' => ['required', 'exists:finance_types,id'],
+        'date' => ['required', 'date'],
+        'description' => ['required'],
+        'amount' => ['required', 'numeric', 'min:0.1'],
+    ];
+    
 
     public function render()
     {
@@ -26,12 +28,14 @@ class Create extends Component
 
     public function save()
     {
+        $this->validate();
+    
         /** @var User $user */
         $user = Auth::user();
       
         $user->finances()
             ->create([
-                'type' => $this->type,
+                'finance_type' => $this->finance_type,
                 'date' => $this->date,
                 'description' => $this->description,
                 'amount' => $this->amount
