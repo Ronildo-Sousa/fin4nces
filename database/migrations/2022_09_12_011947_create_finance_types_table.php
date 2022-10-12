@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('finance_types', function (Blueprint $table) {
             $table->id();
-            $table->enum('type',['expense','incoming']);
+            $table->enum('type',['Expense','Incoming']);
             $table->timestamps();
         });
     }

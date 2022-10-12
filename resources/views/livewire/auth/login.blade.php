@@ -16,7 +16,7 @@
                 <div class="mt-5">
                     <label for="email-address" class="sr-only">Email address</label>
                     <input wire:model='email' id="email-address" name="email" type="email" autocomplete="email"
-                        class="relative block w-full px-3 py-2 text-black placeholder-gray-500 border border-gray-300 rounded-none rounded-sm appearance-none focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        class="relative block w-full px-3 py-2 text-black placeholder-gray-500 border border-gray-300 rounded-sm appearance-none focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         placeholder="Email address">
                     @error('email')
                         <span class="text-red-400">{{ $message }}</span>
@@ -26,7 +26,7 @@
                     <label for="password" class="sr-only">Password</label>
                     <input wire:model='password' id="password" name="password" type="password"
                         autocomplete="current-password"
-                        class="relative block w-full px-3 py-2 text-black placeholder-gray-500 border border-gray-300 rounded-none rounded-sm appearance-none focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        class="relative block w-full px-3 py-2 text-black placeholder-gray-500 border border-gray-300 rounded-sm appearance-none focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         placeholder="Password">
                     @error('password')
                         <span class="text-red-400">{{ $message }}</span>
