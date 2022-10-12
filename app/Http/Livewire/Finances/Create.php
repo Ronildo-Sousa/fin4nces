@@ -5,8 +5,9 @@ namespace App\Http\Livewire\Finances;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 
-class Create extends Component
+class Create extends ModalComponent
 {
     public ?int $finance_type = null;
     public string $date = '';
