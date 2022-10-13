@@ -13,7 +13,9 @@ class Dashboard extends Component
     {
         return view('livewire.pages.dashboard', [
             'finances' => Finance::query()
-                                    ->where('user_id', Auth::user()->id)->paginate(2)
+                                    ->where('user_id', Auth::user()->id)
+                                    ->orderBy('created_at', 'DESC')
+                                    ->paginate(5)
         ]);
     }
 }
