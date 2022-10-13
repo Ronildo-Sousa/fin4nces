@@ -49,7 +49,7 @@
             </div>
             <div class="flex flex-col items-center justify-center flex-1">
                 <!-- Page content -->
-                <button @click="isSidebarOpen = true" class="fixed p-2 text-white bg-black rounded-lg bottom-5 left-3">
+                <button @click="isSidebarOpen = true" class="fixed p-2 text-white bg-black rounded-lg bottom-5 left-5">
                     <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -60,7 +60,7 @@
             </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.1/alpine.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.1/alpine.js"></script> --}}
     <script>
         const setup = () => {
             return {

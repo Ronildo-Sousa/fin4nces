@@ -16,8 +16,8 @@
                     <span class="text-red-400">{{ $message }}</span>
                 @enderror
             </div>
-            <div class="flex">
-                <div class="p-2">
+            <div class="flex flex-col md:flex-row">
+                <div class="p-2 w-full">
                     <label for="date" class="sr-only">Date</label>
                     <input wire:model='date' id="date" name="date" type="date"
                         class="relative block w-full px-3 py-2 text-black placeholder-gray-500 border border-gray-300 rounded-sm appearance-none focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -26,7 +26,7 @@
                         <span class="text-red-400">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="p-2">
+                <div class="p-2 w-full">
                     <select wire:model='finance_type'
                         class="relative block w-full px-3 py-2 text-black placeholder-gray-500 border border-gray-300 rounded-sm focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                         @foreach ($financeTypes as $financeType)
@@ -34,7 +34,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="p-2">
+                <div class="p-2 w-full">
                     <label for="amount" class="sr-only">Amount</label>
                     <input x-mask:dynamic="$money($input, ',')" wire:model='amount' id="amount" name="amount"
                         type="number" min="0.1" max="100" step=".01"
