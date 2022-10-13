@@ -15,7 +15,7 @@ class Dashboard extends Component
             'finances' => Finance::query()
                                     ->where('user_id', Auth::user()->id)
                                     ->orderBy('created_at', 'DESC')
-                                    ->paginate(5)
+                                    ->paginate(6)
         ]);
     }
 }

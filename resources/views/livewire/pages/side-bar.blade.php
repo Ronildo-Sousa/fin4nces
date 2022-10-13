@@ -26,7 +26,7 @@
                         </button>
                     </div>
                     <nav class="flex flex-col flex-1 w-64 p-4 mt-4">
-                        <a href="#" class="flex items-center space-x-2">
+                        <a href="{{ route('dashboard') }}" class="flex items-center space-x-2">
                             <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -36,14 +36,14 @@
                         </a>
                     </nav>
                     <div class="flex-shrink-0 p-4">
-                        <button class="flex items-center space-x-2">
+                        <a href="{{ route('logout') }}" class="flex items-center space-x-2">
                             <svg aria-hidden="true" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                             </svg>
                             <span>Logout</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

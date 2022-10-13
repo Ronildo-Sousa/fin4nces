@@ -4,6 +4,7 @@ use App\Actions\Auth\AuthSocial;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Pages\Dashboard;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -11,6 +12,7 @@ use Laravel\Socialite\Facades\Socialite;
 Route::middleware(['guest'])->group(function () {
     Route::get('/', Login::class)->name('login');
     Route::get('/register', Register::class)->name('register');
+    
 
     Route::get('/auth/{provider}', function (string $provider) {
         return Socialite::driver($provider)->redirect();
@@ -29,6 +31,10 @@ Route::middleware(['guest'])->group(function () {
 
 #region Auth routes
 Route::middleware(['auth'])->group(function () {
+    Route::get('/logout', function(){
+        Auth::logout();
+        return redirect()->route('login');
+    })->name('logout');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 });
 #endregion

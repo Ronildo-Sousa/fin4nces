@@ -16,7 +16,7 @@ class FinanceTypeFactory extends Factory
      */
     public function definition()
     {
-        $types = ['expense','incoming'];
+        $types = ['Expense','Incoming'];
         $rand = rand(0,1);
         return [
             'type' => $types[$rand],

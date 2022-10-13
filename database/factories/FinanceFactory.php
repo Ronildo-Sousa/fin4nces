@@ -17,10 +17,13 @@ class FinanceFactory extends Factory
      */
     public function definition()
     {
+        $rand = rand(1,2);
+
         return [
             'description' => fake()->sentence(4),
             'date' => fake()->date(),
-            'amount' => rand(1000, 90000)
+            'amount' => rand(1, 999),
+            'finance_type' => $rand
         ];
     }
 }

@@ -46,5 +46,6 @@ class Create extends ModalComponent
             ]);
         $this->closeModal();
         $this->emit('refreshFinances');
+        return redirect()->route('dashboard');
     }
 }
