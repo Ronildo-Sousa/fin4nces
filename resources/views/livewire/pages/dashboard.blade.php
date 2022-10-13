@@ -14,5 +14,9 @@
         @foreach ($finances as $finance)
             <livewire:pages.list-item wire:key="'list-item-'.$finance->id" :finance="$finance" />
         @endforeach
+     
+        <div class="mt-5">
+            {{ $finances->links() }}
+        </div>
     </div>
 </main>
