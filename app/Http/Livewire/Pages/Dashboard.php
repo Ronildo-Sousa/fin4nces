@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Pages;
 
+use App\Models\Finance;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -11,7 +12,8 @@ class Dashboard extends Component
     public function render()
     {
         return view('livewire.pages.dashboard', [
-            'finances' => Auth::user()->finances
+            'finances' => Finance::query()
+                                    ->where('user_id', Auth::user()->id)->paginate(5)
         ]);
     }
 }

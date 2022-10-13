@@ -36,7 +36,7 @@
                 </div>
                 <div class="p-2 w-full">
                     <label for="amount" class="sr-only">Amount</label>
-                    <input x-mask:dynamic="$money($input, ',')" wire:model='amount' id="amount" name="amount"
+                    <input wire:model='amount' id="amount" name="amount"
                         type="number" min="0.1" max="100" step=".01"
                         class="relative block w-full px-3 py-2 text-black placeholder-gray-500 border border-gray-300 rounded-sm appearance-none focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         placeholder="Amount">

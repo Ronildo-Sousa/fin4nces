@@ -10,7 +10,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
     </button>
-    <div class="p-1 mt-5 mb-12">
+    <div class="p-1 mt-5 mb-14 md:p-5 flex flex-col items-center">
         @foreach ($finances as $finance)
             <livewire:pages.list-item wire:key="'list-item-'.$finance->id" :finance="$finance" />
         @endforeach
