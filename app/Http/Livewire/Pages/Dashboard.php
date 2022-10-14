@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Pages;
 
+use App\Actions\FinanceAmount;
 use App\Models\Finance;
-use App\Models\FinanceType;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -25,16 +25,16 @@ class Dashboard extends Component
             ->orderBy('created_at', 'DESC')
             ->paginate(6);
 
-        $this->monthExpenses = $this->getFinancesAmount(
+        $this->monthExpenses = (new FinanceAmount)->run(
             now()->month,
-            'Expense',
-            now()->year
+            now()->year,
+            'Expense'
         );
 
-        $this->monthIncomings = $this->getFinancesAmount(
+        $this->monthIncomings = (new FinanceAmount)->run(
             now()->month,
-            'Incoming',
-            now()->year
+            now()->year,
+            'Incoming'
         );
 
         $this->monthTotal = ($this->monthIncomings - $this->monthExpenses);
@@ -52,21 +52,5 @@ class Dashboard extends Component
     private function formatMoney(float $number): string
     {
         return number_format($number, 2, ',');
-    }
-
-    private function getFinancesAmount(int $month, string $type, int $year)
-    {
-        $financeType = FinanceType::query()
-            ->where('type', $type)
-            ->first();
-        
-        $amount = Finance::query()
-            ->where('user_id', Auth::user()->id)
-            ->where('finance_type', $financeType->id)
-            ->whereMonth('date', $month)
-            ->whereYear('date', $year)
-            ->sum('amount');
-
-        return $amount / 1000;
     }
 }
