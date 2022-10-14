@@ -2,10 +2,26 @@
     <x-nav-bar :monthExpenses="$monthExpenses" :monthIncomings="$monthIncomings" :monthTotal="$monthTotal" />
 
     <div class="mt-10">
-        <select name="months">
-            @foreach ($months as $month)
-                <option value="{{ $month['id']}}">{{ $month['name']}}</option>
-            @endforeach
-        </select>
+        <form wire:submit.prevent='search'>
+            <select wire:model.defer='currentMonth' name="currentMonth">
+                <option value="{{1}}">January</option>
+                <option value="{{2}}">February</option>
+                <option value="{{3}}">March</option>
+                <option value="{{4}}">April</option>
+                <option value="{{5}}">May</option>
+                <option value="{{6}}">June</option>
+                <option value="{{7}}">July</option>
+                <option value="{{8}}">August</option>
+                <option value="{{9}}">September</option>
+                <option value="{{10}}">October</option>
+                <option value="{{11}}">November</option>
+                <option value="{{12}}">December</option>
+            </select>
+            <input wire:model='currentYear' type="datetime" name="" id="">
+            <button type="submit">Search</button>
+        </form>
+        {{-- @foreach ($finances as $finance)
+            <p>{{$finance}}</p>
+        @endforeach --}}
     </div>
 </main>
