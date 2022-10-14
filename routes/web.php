@@ -4,6 +4,7 @@ use App\Actions\Auth\AuthSocial;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Pages\Dashboard;
+use App\Http\Livewire\Pages\History;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -35,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
         Auth::logout();
         return redirect()->route('login');
     })->name('logout');
+
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/history', History::class)->name('history');
 });
 #endregion
