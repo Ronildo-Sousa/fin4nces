@@ -5,7 +5,7 @@
     <div class="static bg-green-700 h-20">
         <div class="absolute flex w-full lg:w-2/3 lg:left-40 xl:w-1/2 xl:left-1/4 justify-around top-8">
             <div>
-                <x-card type="red" :total="false">
+                <x-card type="red" :negative="false" :total="false">
                     <x-slot:name>
                         Expenses
                         </x-slot>
@@ -16,11 +16,11 @@
                                     d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             </x-slot>
-                            <p>R$ {{ $monthExpenses}}</p>
+                            <p>R$ {{ $monthExpenses }}</p>
                 </x-card>
             </div>
             <div>
-                <x-card type="green" :total="false">
+                <x-card type="green" :negative="false" :total="false">
                     <x-slot:name>
                         Incomings
                         </x-slot>
@@ -35,7 +35,7 @@
                 </x-card>
             </div>
             <div>
-                <x-card type :total="true">
+                <x-card type :negative="($monthTotal < 0)" :total="true">
                     <x-slot:name>
                         Total
                         </x-slot>
