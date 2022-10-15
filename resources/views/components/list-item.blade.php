@@ -1,10 +1,10 @@
-<section class="bg-white p-3 rounded-lg mt-4 md:p-4 max-w-3xl w-full">
+<div class="bg-white p-3 rounded-lg mt-4 md:p-4 max-w-3xl w-full">
     <div>
         <div class="text-lg font-semibold mb-2">
             <p>{{ $description }}</p>
         </div>
         <div class="flex justify-between">
-            @if ($finance_type == 1)
+            @if ($financeType == 1)
                 <p class="font-bold text-red-500">R${{ $amount }}</p>
             @else
                 <p class="font-bold text-green-500">R${{ $amount }}</p>
@@ -13,4 +13,4 @@
             <livewire:finances.destroy :finance="$finance" />
         </div>
     </div>
-</section>
+</div>

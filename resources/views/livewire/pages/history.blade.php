@@ -22,14 +22,8 @@
                 <button type="submit">Search</button>
             </form>
             @foreach ($finances as $finance)
-                <livewire:pages.list-item 
-                    wire:key="'list-item-'.$finance->id" 
-                    :finance="$finance" 
-                    :description="$finance->description"
-                    :finance_type="$finance->finance_type"
-                    :amount="$finance->amount"
-                    :date="$finance->date"
-                />
+                <x-list-item wire:key="'list-item-'.$finance->id" :finance="$finance" :description="$finance->description" :finance_type="$finance->finance_type"
+                    :amount="$finance->amount" :date="$finance->date" />
             @endforeach
 
             {{-- <div class="mt-5">
