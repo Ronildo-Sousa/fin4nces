@@ -19,19 +19,20 @@ class Dashboard extends Component
 
     public function mount()
     {
-        $this->finances = Finance::query()
-            ->where('user_id', Auth::user()->id)
-            ->whereMonth('date', now()->month)
-            ->orderBy('created_at', 'DESC')
-            ->paginate(6);
+        $Finance = new FinanceAmount;
 
-        $this->monthExpenses = (new FinanceAmount)->run(
+        $this->finances = $Finance->GetFinances(
+            now()->month,
+            now()->year
+        );
+
+        $this->monthExpenses = $Finance->GetAmount(
             now()->month,
             now()->year,
             'Expense'
         );
 
-        $this->monthIncomings = (new FinanceAmount)->run(
+        $this->monthIncomings = $Finance->GetAmount(
             now()->month,
             now()->year,
             'Incoming'
