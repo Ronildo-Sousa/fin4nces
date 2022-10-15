@@ -3,13 +3,9 @@
 namespace App\Http\Livewire\Pages;
 
 use App\Actions\FinanceAmount;
-use App\Models\Finance;
-use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Illuminate\Support\Str;
+
 
 class History extends Component
 {
@@ -28,13 +24,13 @@ class History extends Component
         $Finance = new FinanceAmount;
 
         $this->currentMonth = now()->month;
-        $this->currentYear = now()->year;
+        $this->currentYear = 2022;
 
         $this->finances = $Finance->GetFinances(
             $this->currentMonth,
             $this->currentYear
         );
-        
+
         $this->monthExpenses = $Finance->GetAmount(
             $this->currentMonth,
             $this->currentYear,
@@ -60,7 +56,7 @@ class History extends Component
         ]);
     }
 
-    public function search()
+    private function refreshFinances()
     {
         $Finance = new FinanceAmount;
 
@@ -82,7 +78,10 @@ class History extends Component
         );
 
         $this->monthTotal = ($this->monthIncomings - $this->monthExpenses);
+    }
 
-        // $this->emit('refreshFinances');
+    public function search()
+    {
+        $this->refreshFinances();
     }
 }

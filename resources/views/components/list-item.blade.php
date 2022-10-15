@@ -10,7 +10,7 @@
                 <p class="font-bold text-green-500">R${{ $amount }}</p>
             @endif
             <p class="font-semibold">{{ $date }}</p>
-            <livewire:finances.destroy :finance="$finance" />
+            {{-- <livewire:finances.destroy :finance="$finance" /> --}}
         </div>
     </div>
 </div>

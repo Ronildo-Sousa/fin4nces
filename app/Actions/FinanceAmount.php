@@ -15,7 +15,7 @@ class FinanceAmount
                 ->whereMonth('date', $month)
                 ->whereYear('date', $year)
                 ->orderBy('created_at', 'DESC')
-                ->paginate(6);
+                ->paginate(1);
     }
     public function GetAmount(int $month, int $year, string $type)
     {

@@ -3,7 +3,7 @@
 
     <div class="mt-10">
         <div class="p-1 mt-10 mb-14 md:p-5 flex flex-col items-center">
-            <form wire:submit.prevent='search'>
+            <div>
                 <select wire:model.defer='currentMonth' name="currentMonth">
                     <option value="{{ 1 }}">January</option>
                     <option value="{{ 2 }}">February</option>
@@ -18,17 +18,13 @@
                     <option value="{{ 11 }}">November</option>
                     <option value="{{ 12 }}">December</option>
                 </select>
-                <input wire:model='currentYear' type="datetime" name="" id="">
-                <button type="submit">Search</button>
-            </form>
+                <input wire:model.lazy='currentYear' type="datetime" name="currentYear">
+                <button wire:click='search'>Search</button>
+            </div>
             @foreach ($finances as $finance)
-                <x-list-item wire:key="'list-item-'.$finance->id" :finance="$finance" :description="$finance->description" :finance_type="$finance->finance_type"
-                    :amount="$finance->amount" :date="$finance->date" />
+                <x-list-item wire:key="'list-item-'.$finance['id']" :finance="$finance" :description="$finance['description']" :finance_type="$finance['finance_type']"
+                    :amount="$finance['amount']" :date="$finance['date']" />
             @endforeach
-
-            {{-- <div class="mt-5">
-                {{ $finances->links() }}
-            </div> --}}
         </div>
     </div>
 </main>
