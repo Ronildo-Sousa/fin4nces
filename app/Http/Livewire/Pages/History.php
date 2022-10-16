@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Pages;
 
 use App\Actions\FinanceAmount;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 
@@ -11,7 +12,7 @@ class History extends Component
 {
     protected $listeners = ['refreshFinances' => '$refresh'];
 
-    private LengthAwarePaginator $finances;
+    private array $finances = [];
     private string $monthExpenses = '';
     private string $monthIncomings = '';
     private string $monthTotal = '';
@@ -24,13 +25,16 @@ class History extends Component
         $Finance = new FinanceAmount;
 
         $this->currentMonth = now()->month;
-        $this->currentYear = 2022;
+        $this->currentYear = now()->year;
 
-        $this->finances = $Finance->GetFinances(
+        $financeData = $Finance->GetFinances(
             $this->currentMonth,
-            $this->currentYear
+            $this->currentYear,
+            true
         );
-
+        
+        $this->finances = $financeData->toArray();
+     
         $this->monthExpenses = $Finance->GetAmount(
             $this->currentMonth,
             $this->currentYear,
@@ -60,10 +64,13 @@ class History extends Component
     {
         $Finance = new FinanceAmount;
 
-        $this->finances = $Finance->GetFinances(
+        $financeData = $Finance->GetFinances(
             $this->currentMonth,
-            $this->currentYear
+            $this->currentYear,
+            true
         );
+       
+        $this->finances = $financeData->toArray();
         
         $this->monthExpenses = $Finance->GetAmount(
             $this->currentMonth,
