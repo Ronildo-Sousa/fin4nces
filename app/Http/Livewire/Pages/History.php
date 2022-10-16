@@ -10,9 +10,9 @@ use Livewire\Component;
 
 class History extends Component
 {
-    protected $listeners = ['refreshFinances' => '$refresh'];
+    protected $listeners = ['refreshFinances' => 'reload'];
 
-    private array $finances = [];
+    private array $financesArray = [];
     private string $monthExpenses = '';
     private string $monthIncomings = '';
     private string $monthTotal = '';
@@ -24,7 +24,7 @@ class History extends Component
     {
         $Finance = new FinanceAmount;
 
-        $this->currentMonth = now()->month;
+        $this->currentMonth = now()->month - 1;
         $this->currentYear = now()->year;
 
         $financeData = $Finance->GetFinances(
@@ -32,9 +32,9 @@ class History extends Component
             $this->currentYear,
             true
         );
-        
-        $this->finances = $financeData->toArray();
      
+        $this->financesArray = $financeData->toArray();
+        
         $this->monthExpenses = $Finance->GetAmount(
             $this->currentMonth,
             $this->currentYear,
@@ -53,7 +53,7 @@ class History extends Component
     public function render()
     {
         return view('livewire.pages.history', [
-            'finances' => $this->finances,
+            'finances' => $this->financesArray,
             'monthExpenses' => number_format(floatval($this->monthExpenses), 2, ','),
             'monthIncomings' => number_format(floatval($this->monthIncomings), 2, ','),
             'monthTotal' => number_format(floatval($this->monthTotal), 2, ','),
@@ -69,9 +69,9 @@ class History extends Component
             $this->currentYear,
             true
         );
-       
-        $this->finances = $financeData->toArray();
-        
+        // $this->finances = [];
+        $this->financesArray = $financeData->toArray();
+      
         $this->monthExpenses = $Finance->GetAmount(
             $this->currentMonth,
             $this->currentYear,
@@ -90,5 +90,9 @@ class History extends Component
     public function search()
     {
         $this->refreshFinances();
+    }
+    public function reload()
+    {
+        return redirect()->route('history');
     }
 }

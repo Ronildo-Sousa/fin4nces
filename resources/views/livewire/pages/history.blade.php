@@ -26,9 +26,16 @@
                       </svg>                      
                 </button>
             </div>
+            {{var_dump(count($finances))}}
             @foreach ($finances as $finance)
-                <x-list-item wire:key="'list-item-'.$finance['id']" :finance="$finance" :description="$finance['description']" :finance_type="$finance['finance_type']"
-                    :amount="$finance['amount']" :date="$finance['date']" />
+                <x-list-item 
+                    wire:key="'list-item-'.$finance['id']" 
+                    :financeId="$finance['id']" 
+                    :description="$finance['description']" 
+                    :finance_type="$finance['finance_type']"
+                    :amount="$finance['amount']" 
+                    :date="$finance['date']" 
+                    />
             @endforeach
             @if (empty($finances))
                 <div class="mt-5 w-full bg-red-500 text-white text-center cursor-pointer hover:bg-red-600 p-2 rounded-sm">

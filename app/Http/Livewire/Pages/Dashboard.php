@@ -15,7 +15,7 @@ class Dashboard extends Component
     private string $monthIncomings = '';
     private string $monthTotal = '';
 
-    protected $listeners = ['refreshFinances' => '$refresh'];
+    protected $listeners = ['refreshFinances' => 'reload'];
 
     public function mount()
     {
@@ -48,5 +48,10 @@ class Dashboard extends Component
             'monthIncomings' => number_format($this->monthIncomings, 2, ','),
             'monthTotal' => number_format($this->monthTotal, 2, ','),
         ]);
+    }
+
+    public function reload()
+    {
+        return redirect()->route('dashboard');
     }
 }

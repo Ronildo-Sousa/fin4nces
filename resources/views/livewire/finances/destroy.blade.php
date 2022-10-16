@@ -1,3 +1,4 @@
+{{var_dump($financeId)}}
 <div>
     <button wire:click='destroy' class="bg-red-500 text-white p-1 rounded-md">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

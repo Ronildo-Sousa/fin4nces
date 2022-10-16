@@ -18,10 +18,11 @@ class FinanceFactory extends Factory
     public function definition()
     {
         $rand = rand(1,2);
-
+        $randomDate = rand(0,1);
+        $dates = ["2022-10-27", "2022-09-27"];
         return [
             'description' => fake()->sentence(4),
-            'date' => fake()->date(),
+            'date' => $dates[$randomDate],
             'amount' => rand(1, 999),
             'finance_type' => $rand
         ];

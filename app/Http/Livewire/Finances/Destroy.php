@@ -7,12 +7,13 @@ use Livewire\Component;
 
 class Destroy extends Component
 {
-    public Finance $finance;
+    public int $financeId;
 
     public function destroy()
     {
-        $this->finance->delete();
-        return redirect()->route('dashboard');
+        Finance::query()->find($this->financeId)->delete();
+
+        $this->emit('refreshFinances');
     }
     public function render()
     {
