@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Pages;
 
 use App\Actions\FinanceAmount;
+use App\Models\Finance;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
@@ -85,6 +86,12 @@ class History extends Component
         );
 
         $this->monthTotal = ($this->monthIncomings - $this->monthExpenses);
+    }
+
+    public function destroy(int $ItemId)
+    {
+        Finance::find($ItemId)->delete();
+        $this->reload();
     }
 
     public function search()

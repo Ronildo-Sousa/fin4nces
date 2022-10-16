@@ -11,8 +11,10 @@
     </button>
     <div class="p-1 mt-10 mb-14 md:p-5 flex flex-col items-center">
         @foreach ($finances as $finance)
-            <x-list-item wire:key="'list-item-'.$finance->id" :financeId="$finance->id" :description="$finance->description" :finance_type="$finance->finance_type"
-                :amount="$finance->amount" :date="$finance->date" />
+            <x-list-item :description="$finance->description" :finance_type="$finance->finance_type"
+                :amount="$finance->amount" :date="$finance->date">
+                <livewire:finances.destroy :financeId="$finance['id']">
+            </x-list-item>
         @endforeach
 
         <div class="mt-5">
