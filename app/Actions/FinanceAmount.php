@@ -15,14 +15,14 @@ class FinanceAmount
                 ->where('user_id', Auth::user()->id)
                 ->whereMonth('date', $month)
                 ->whereYear('date', $year)
-                ->orderBy('created_at', 'DESC')
+                ->orderBy('date', 'DESC')
                 ->get();
         }
         return Finance::query()
             ->where('user_id', Auth::user()->id)
             ->whereMonth('date', $month)
             ->whereYear('date', $year)
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('date', 'DESC')
             ->paginate(6);
     }
     public function GetAmount(int $month, int $year, string $type)
