@@ -12,7 +12,7 @@ class History extends Component
 {
     protected $listeners = ['refreshFinances' => 'reload'];
 
-    private array $financesArray = [];
+    public array $finances = [];
     private string $monthExpenses = '';
     private string $monthIncomings = '';
     private string $monthTotal = '';
@@ -33,7 +33,7 @@ class History extends Component
             true
         );
      
-        $this->financesArray = $financeData->toArray();
+        $this->finances = $financeData->toArray();
         
         $this->monthExpenses = $Finance->GetAmount(
             $this->currentMonth,
@@ -53,7 +53,7 @@ class History extends Component
     public function render()
     {
         return view('livewire.pages.history', [
-            'finances' => $this->financesArray,
+            // 'finances' => $this->finances,
             'monthExpenses' => number_format(floatval($this->monthExpenses), 2, ','),
             'monthIncomings' => number_format(floatval($this->monthIncomings), 2, ','),
             'monthTotal' => number_format(floatval($this->monthTotal), 2, ','),
@@ -70,7 +70,7 @@ class History extends Component
             true
         );
         // $this->finances = [];
-        $this->financesArray = $financeData->toArray();
+        $this->finances = $financeData->toArray();
       
         $this->monthExpenses = $Finance->GetAmount(
             $this->currentMonth,

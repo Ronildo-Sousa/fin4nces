@@ -11,7 +11,7 @@
             @endif
             <p class="font-semibold">{{ $date }}</p>
          
-            {{-- <livewire:finances.destroy wire:key="delete-$financeId" :financeId="$financeId" /> --}}
+            <livewire:finances.destroy wire:key="delete-$financeId" :financeId="$financeId" />
         </div>
     </div>
 </div>
