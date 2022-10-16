@@ -29,7 +29,7 @@
                     </svg>
                 </button>
             </div>
-            {{ var_dump(count($finances)) }}
+            
             @foreach ($finances as $finance)
                 <x-list-item :description="$finance['description']" :finance_type="$finance['finance_type']" :amount="$finance['amount']" :date="$finance['date']">
                     <button wire:click="destroy({{$finance['id']}})" class="bg-red-500 text-white p-1 rounded-md">
