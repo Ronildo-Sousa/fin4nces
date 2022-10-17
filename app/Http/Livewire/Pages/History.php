@@ -11,7 +11,10 @@ use Livewire\Component;
 
 class History extends Component
 {
-    protected $listeners = ['refreshFinances' => 'reload'];
+    protected $listeners = [
+        'refreshFinances' => 'reload',
+        'delete' => 'destroy'
+    ];
 
     public array $finances = [];
     private string $monthExpenses = '';
@@ -33,9 +36,9 @@ class History extends Component
             $this->currentYear,
             true
         );
-     
+
         $this->finances = $financeData->toArray();
-        
+
         $this->monthExpenses = $Finance->GetAmount(
             $this->currentMonth,
             $this->currentYear,
@@ -54,7 +57,6 @@ class History extends Component
     public function render()
     {
         return view('livewire.pages.history', [
-            // 'finances' => $this->finances,
             'monthExpenses' => number_format(floatval($this->monthExpenses), 2, ','),
             'monthIncomings' => number_format(floatval($this->monthIncomings), 2, ','),
             'monthTotal' => number_format(floatval($this->monthTotal), 2, ','),
@@ -70,9 +72,9 @@ class History extends Component
             $this->currentYear,
             true
         );
-        // $this->finances = [];
+
         $this->finances = $financeData->toArray();
-      
+
         $this->monthExpenses = $Finance->GetAmount(
             $this->currentMonth,
             $this->currentYear,
@@ -88,10 +90,21 @@ class History extends Component
         $this->monthTotal = ($this->monthIncomings - $this->monthExpenses);
     }
 
-    public function destroy(int $ItemId)
+    public function destroy(int $id)
     {
-        Finance::find($ItemId)->delete();
-        $this->reload();
+        Finance::query()->find($id)->delete();
+
+        $this->emit('refreshFinances');
+    }
+
+    public function destroyConfirm(int $id)
+    {
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'type' => 'warning',
+            'title' => 'Are you sure ?',
+            'text' => '',
+            'id' => $id
+        ]);
     }
 
     public function search()
