@@ -8,6 +8,7 @@ use App\Http\Livewire\Pages\History;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Arr;
 
 #region Guest routes
 Route::middleware(['guest'])->group(function () {
@@ -16,7 +17,11 @@ Route::middleware(['guest'])->group(function () {
     
 
     Route::get('/auth/{provider}', function (string $provider) {
-        return Socialite::driver($provider)->redirect();
+        $providers = ['github', 'google'];
+        if (in_array($provider, $providers)) {
+            return Socialite::driver($provider)->redirect();
+        }
+        return redirect()->back();
     })->name('SocialRedirect');
 
     Route::get('/{provider}/callback', function (string $provider) {
