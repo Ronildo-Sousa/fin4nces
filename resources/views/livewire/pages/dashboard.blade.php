@@ -17,7 +17,7 @@
         @endforeach
 
         @if ($finances->count() == 0)
-            <div class="mt-5 w-full bg-red-500 text-white text-center cursor-pointer hover:bg-red-600 p-2 rounded-sm">
+            <div class="mt-5 w-full md:w-2/3 bg-red-500 text-white text-center cursor-pointer hover:bg-red-600 p-2 rounded-sm">
                 <p>No data was found.</p>
             </div>
         @endif
